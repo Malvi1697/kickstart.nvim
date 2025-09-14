@@ -9,12 +9,12 @@
 ========         ||                    ||   | === |          ========
 ========         ||   KICKSTART.NVIM   ||   |-----|          ========
 ========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
+=======         ||                    ||   |-----|          ========
 ========         ||:Tutor              ||   |:::::|          ========
 ========         |'-..................-'|   |____o|          ========
 ========         `"")----------------(""`   ___________      ========
 ========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
+=======       /:::========|  |==hjkl==:::\  \ required \    ========
 ========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
 ========                                                     ========
 =====================================================================
@@ -252,6 +252,8 @@ vim.opt.termguicolors = true
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+--
+
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
@@ -411,15 +413,19 @@ require('lazy').setup({
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
+        defaults = {
+          preview = {
+            enable = true,
+          },
+        },
+        pickers = {
+          colorscheme = {
+            enable_preview = true,
+            layout_config = {
+              preview_width = 0.5,
+            },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
